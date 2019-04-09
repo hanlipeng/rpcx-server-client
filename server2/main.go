@@ -6,14 +6,13 @@ import (
 	"github.com/smallnest/rpcx/log"
 	"github.com/smallnest/rpcx/server"
 	"github.com/smallnest/rpcx/serverplugin"
+	"newMicro/server2/config"
 	"newMicro/server2/factory"
 	"time"
 )
 
 var (
-	addr = flag.String("addr", "localhost:8081", "server address")
-	consulAddr = flag.String("consulAddr", "localhost:8500", "consul address")
-	basePath   = flag.String("server2", "/server2", "prefix path")
+
 )
 
 func main() {
@@ -22,14 +21,14 @@ func main() {
 	s := server.NewServer()
 	addRegistryPlugin(s)
 	s.RegisterName("PrintService",factory.GetPrintService(), "")
-	s.Serve("tcp", *addr)
+	s.Serve("tcp", *config.Addr)
 }
 func addRegistryPlugin(s *server.Server) {
 
 	r := &serverplugin.ConsulRegisterPlugin{
-		ServiceAddress: "tcp@" + *addr,
-		ConsulServers:  []string{*consulAddr},
-		BasePath:       *basePath,
+		ServiceAddress: "tcp@" + *config.Addr,
+		ConsulServers:  []string{*config.ConsulAddr},
+		BasePath:       *config.BasePath,
 		Metrics:        metrics.NewRegistry(),
 		UpdateInterval: time.Minute,
 	}

@@ -12,8 +12,8 @@ import (
 )
 
 var (
-	consulAddr = flag.String("consulAddr", "localhost:8500", "consul address")
-	basePath   = flag.String("base", "/server1", "prefix path")
+	consulAddr = flag.String("consulAddr", "10.0.0.5:8500", "consul address")
+	basePath   = flag.String("base", "/server", "prefix path")
 )
 
 func main() {

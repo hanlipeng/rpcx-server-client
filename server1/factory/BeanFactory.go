@@ -1,7 +1,6 @@
 package factory
 
 import (
-	"flag"
 	"github.com/smallnest/rpcx/client"
 	client2 "newMicro/server1/client"
 	"newMicro/server1/config"
@@ -21,10 +20,9 @@ func GetDemoService() service.DemoService {
 
 func GetPrintClient() server2.PrintService {
 	beanFlag := "PrintService"
-	basePath := flag.String("server2", "/server2", "prefix path")
 
 	initFunc := func() interface{} {
-		return client2.PrintServiceClient{Client: initXClient(beanFlag,basePath)}
+		return client2.PrintServiceClient{Client: initXClient(beanFlag,config.BasePath)}
 	}
 	return getBean(beanFlag, initFunc).(server2.PrintService)
 }
