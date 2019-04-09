@@ -1,8 +1,11 @@
 package: newMicro
 import:
 - package: github.com/rcrowley/go-metrics
+- package: github.com/rpcx-ecosystem/rpcx-gateway
 - package: github.com/smallnest/rpcx
   version: ^4.0.0-release
   subpackages:
   - server
   - serverplugin
+ignore:
+- golang.org/x/net

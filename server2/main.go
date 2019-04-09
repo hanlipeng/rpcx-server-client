@@ -11,9 +11,7 @@ import (
 	"time"
 )
 
-var (
 
-)
 
 func main() {
 	flag.Parse()
